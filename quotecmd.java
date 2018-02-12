@@ -91,16 +91,51 @@ public class quotecmd
         * to write to an xml file. We have our reader class. QuoteSaxHandler. We just need to mimic that one and reverse engineer it. 
       */
        case 'n':
+         boolean test = true;
+         boolean test2 = true;
          String author;
          String quoteTxt;
          System.out.println("Author: ");
          author = sc.nextLine();
+         while(test){
+      
+           if(isString(author) == false){
+             System.out.println("Sorry please try again or Press '1' for exit.");
+                      author = sc.nextLine();
+                      if(author.charAt(0) == '1'){
+                        test2 = false;
+                        break;
+                      }
+             
+           }
+          
+           else
+             test = false;
+            
+         }
+         if(test == false)
+           test = true;
+         if(test2 == false)
+           break;
          System.out.println("Quote Text: ");
          quoteTxt = sc.nextLine();
+         while(test){
+           if(isString(quoteTxt) == false){
+             System.out.println("Sorry please try again or Press '1' for exit.");
+                      quoteTxt = sc.nextLine();
+                      if(quoteTxt.charAt(0) == '1'){
+                        test2 = false;
+                        break;
+                      }
+           }
+           else
+             test = false;
+         }
+         if(test2 == true){
          clarinet.write(quoteFileName, author, quoteTxt);
          saxaphone = new QuoteSaxParser(quoteFileName);
          quoteList = saxaphone.getQuoteList();
-         System.out.println(quoteList);
+         }
          break;
        //Search option
        case 's':
@@ -159,6 +194,13 @@ public class quotecmd
     sc.close();
    }
 
-     
+     public static boolean isString(String str){
+       for(int i = 0; i < str.length(); i++){
+         if(Character.isDigit(str.charAt(i)) == true || !Character.isLetter(str.charAt(i)))
+           return false;
+         
+       }
+       return true;
+     }
 
 } // end quoteserve class
