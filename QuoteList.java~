@@ -84,10 +84,6 @@ public class QuoteList
     */
    public Quote getRandomQuote ()
    {
-     
-
-
-     
       return quoteArray.get (randomGen.nextInt (quoteArray.size()));
    }
 }

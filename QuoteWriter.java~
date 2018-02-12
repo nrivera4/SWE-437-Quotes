@@ -25,6 +25,7 @@ public class QuoteWriter{
       d = doc.parse(file);
       Element base =  d.createElement("quote");
       Element rootElement = d.getDocumentElement();
+      System.out.println(rootElement);
       
       el = d.createElement("quote-text");
       el.appendChild(d.createTextNode(quoteTxt));

@@ -33,12 +33,14 @@ public class quotecmd
    private static QuoteWriter clarinet;
    //Main program
    public static void main(String[] args) throws IOException, IndexOutOfBoundsException{
+
      BufferedReader in = new BufferedReader(new FileReader("quotes\\output.txt"));
      //Input
      Scanner sc = new Scanner(System.in);
      //Sets Parser, and gets quoteList from the parsed xml file. 
-     clarinet = new QuoteWriter();
+
      saxaphone = new QuoteSaxParser(quoteFileName);
+     clarinet = new QuoteWriter();
      quoteList = saxaphone.getQuoteList();
      //We use these next two variables to retrieve user input, and put it into a switch statement. 
      String choice;
@@ -84,7 +86,7 @@ public class quotecmd
          System.out.print("To end program press e\t\t\t");
          System.out.print("To change random quote press r\n");
          System.out.println("To add new quote press n\n");
-         choice = sc.nextLine();
+         choice = sc.next();
          actualChoice = choice.charAt(0);
      switch(actualChoice){
        /*This is the option to add quotes. What we need to do is this. We need to create a new class or modify a class
@@ -93,19 +95,19 @@ public class quotecmd
        case 'n':
          String author;
          String quoteTxt;
-         System.out.println("Author: ");
-         author = sc.nextLine();
-         System.out.println("Quote Text: ");
-         quoteTxt = sc.nextLine();
+         System.out.print("Author: ");
+         author = sc.next();
+         System.out.print("\nQuote Text: ");
+         quoteTxt = sc.next();
          clarinet.write(quoteFileName, author, quoteTxt);
-         saxaphone = new QuoteSaxParser(quoteFileName);
-         quoteList = saxaphone.getQuoteList();
-         System.out.println(quoteList);
          break;
+         
+         
+       
        //Search option
        case 's':
          QuoteList retVal;
-         choice = sc.nextLine();
+         choice = sc.next();
          if(scope == "Author"){
            retVal = quoteList.search(choice, 0);
          }
@@ -116,7 +118,7 @@ public class quotecmd
            retVal = quoteList.search(choice, 2);
          }
          for(int i = 0; i < retVal.getSize();i++ ){
-           System.out.printf("%d. %s\n -%s\n", i, retVal.getQuote(i).getQuoteText(), retVal.getQuote(i).getAuthor());
+           System.out.printf("%d. %s\n -%s\n", ++i, retVal.getQuote(i).getQuoteText(), retVal.getQuote(i).getAuthor());
          }
          if(UserSearches.size() >=5){
            UserSearches.remove(0);
