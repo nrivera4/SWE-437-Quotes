@@ -1,0 +1,49 @@
+package quotes;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+import junit.framework.JUnit4TestAdapter; 
+import junit.framework.TestCase; 
+import junit.framework.TestSuite; 
+public class QuotesTesting{
+  
+  
+ //QuoteList -- search tests.  
+  
+  //Tests to see if the QuoteList has been populated. 
+ @Test
+ public void populateQuoteListTest(){
+   QuoteList qtlst;
+   QuoteSaxParser saxaphone;
+   saxaphone = new QuoteSaxParser("quotes\\quotes.xml");
+   qtlst = saxaphone.getQuoteList();
+   assertTrue(true);
+ }
+ @Test(expected=NullPointerException.class)
+ public void searchStringNullTest(){
+   QuoteSaxParser saxaphone;
+   QuoteList result;
+   QuoteList qtlst;
+   saxaphone = new QuoteSaxParser("quotes\\quotes.xml");
+   qtlst = saxaphone.getQuoteList();
+   
+   result = qtlst.search(null, 0);
+   result = qtlst.search(null, 1);
+   result = qtlst.search(null, 2);
+ }
+  
+ public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(QuotesTesting.class);
+  
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+         System.out.println("Check Tests");
+      }
+  
+      System.out.println(result.wasSuccessful());
+   }
+}
