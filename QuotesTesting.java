@@ -14,15 +14,14 @@ public class QuotesTesting{
   
  //QuoteList -- search tests.  
   
-  //Tests to see if the QuoteList has been populated. 
+
  @Test
- public void populateQuoteListTest(){
-   QuoteList qtlst;
-   QuoteSaxParser saxaphone;
-   saxaphone = new QuoteSaxParser("quotes\\quotes.xml");
-   qtlst = saxaphone.getQuoteList();
-   assertTrue(true);
+ public void calTest1(){
+   Cal cal = new Cal();
+   int days = cal.cal(12, 1, 12, 10, 2017);
+   assertTrue(days == 9)
  }
+ /*
  //Test for Null exception
  @Test(expected=NullPointerException.class)
  public void searchStringNullTest(){
@@ -209,7 +208,7 @@ public class QuotesTesting{
    assertTrue(result.getSize() > 0 && result.getQuote(0).getQuoteText().length() > 0);
  }
   
-  
+  */
  public static void main(String[] args) {
       Result result = JUnitCore.runClasses(QuotesTesting.class);
   

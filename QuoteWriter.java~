@@ -15,7 +15,7 @@ import org.w3c.dom.*;
 
 public class QuoteWriter{
 
-  public void write(String file, String quoteTxt, String author, String keyword){
+  public void write(String file, String quoteTxt, String author){
     Document d;
     Element el = null;
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -33,12 +33,8 @@ public class QuoteWriter{
        el = d.createElement("author");
       el.appendChild(d.createTextNode(author));
       base.appendChild(el);
-
-
-         el = d.createElement("keyword");
-      el.appendChild(d.createTextNode(keyword));
-      base.appendChild(el);
       rootElement.appendChild(base);
+
       
        try {
             Transformer tr = TransformerFactory.newInstance().newTransformer();
